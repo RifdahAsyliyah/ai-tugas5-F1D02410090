@@ -1,0 +1,1 @@
+# Sistem-Pakar-Identifikasi-Gangguan-Koneksi-Wi-Fi-pada-Windows
