@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Sistem Pakar Identifikasi Gangguan Wi-Fi pada Windows
 Mesin inferensi Forward Chaining dibuat secara mandiri.
@@ -49,7 +48,7 @@ def forward_chaining(knowledge, initial_facts):
                     "cycle": cycle
                 }
                 fired_rules.append(rule)
-                print(f"  Siklus {cycle}: {rule['id']} -> {knowledge['label'].get(conclusion, conclusion)}")
+                print(f"  Langkah {cycle}: {rule['id']} menghasilkan {knowledge['label'].get(conclusion, conclusion)}")
                 new_rule_found = True
                 # Mulai pemeriksaan ulang dari aturan pertama setelah fakta baru masuk.
                 break
@@ -64,7 +63,7 @@ def explain_fact(fact, proof, labels, sources, indent=0, visited=None):
     prefix = " " * indent
     label = labels.get(fact, fact)
     if fact not in proof:
-        print(f"{prefix}- Fakta awal: {label}")
+        print(f"{prefix}- Gejala yang dimasukkan: {label}")
         return
     if fact in visited:
         print(f"{prefix}- {label} (siklus/rujukan berulang dihindari)")
@@ -79,7 +78,7 @@ def explain_fact(fact, proof, labels, sources, indent=0, visited=None):
 
 def ask_user(knowledge):
     facts = set()
-    print("\nJawab pertanyaan berikut dengan y (ya) atau t (tidak).")
+    print("\nJawab setiap pertanyaan dengan y (ya) atau t (tidak).")
     for index, item in enumerate(knowledge["pertanyaan"], start=1):
         while True:
             answer = input(f"{index}. {item['teks']} (y/t): ").strip().lower()
@@ -88,7 +87,7 @@ def ask_user(knowledge):
                 break
             if answer in {"t", "tidak"}:
                 break
-            print("Masukkan hanya y atau t.")
+            print("Jawaban tidak dikenali. Masukkan y atau t.")
     return facts
 
 def run_case(knowledge, initial_facts, case_name="Kasus"):
@@ -97,38 +96,38 @@ def run_case(knowledge, initial_facts, case_name="Kasus"):
     print(knowledge["judul"])
     print(f"Pengujian: {case_name}")
     print("=" * 68)
-    print("Fakta awal:")
+    print("Gejala yang dimasukkan:")
     if initial_facts:
         for fact in sorted(initial_facts):
             print(f"  - {labels.get(fact, fact)}")
     else:
-        print("  - Tidak ada fakta yang dijawab YA.")
+        print("  - Tidak ada gejala yang dijawab YA.")
 
-    print("\nProses Forward Chaining:")
+    print("\nProses penelusuran aturan (Forward Chaining):")
     memory, proof, fired = forward_chaining(knowledge, initial_facts)
 
     conclusions = [fact for fact in knowledge["kesimpulan_akhir"] if fact in memory]
-    print("\nHasil:")
+    print("\nHasil identifikasi:")
     if not conclusions:
         print("  Tidak ditemukan kesimpulan berdasarkan aturan yang tersedia.")
     else:
         for conclusion in conclusions:
             print(f"\nKESIMPULAN: {labels.get(conclusion, conclusion)}")
-            print("Alasan penelusuran:")
+            print("Dasar kesimpulan:")
             explain_fact(conclusion, proof, labels, knowledge["sumber"], indent=2)
 
     if not fired:
         print("\nTidak ada aturan yang terpenuhi.")
-    print("\nBatas keberlakuan:")
+    print("\nBatas penggunaan sistem:")
     print(knowledge["batas"])
     print("=" * 68)
     return conclusions
 
 def main():
-    parser = argparse.ArgumentParser(description="Sistem Pakar Gangguan Wi-Fi dengan Forward Chaining")
+    parser = argparse.ArgumentParser(description="Sistem pakar pemeriksaan awal koneksi Wi-Fi menggunakan Forward Chaining")
     parser.add_argument("--kb", default="kb_wifi.json", help="Lokasi file basis pengetahuan JSON")
     parser.add_argument("--demo", choices=["dhcp", "sinyal", "negatif", "dns", "bandwidth", "interferensi"],
-                        help="Jalankan skenario uji yang telah disiapkan")
+                        help="Jalankan salah satu skenario pengujian")
     args = parser.parse_args()
 
     try:
@@ -139,20 +138,20 @@ def main():
 
     demo_cases = {
         "dhcp": {
-            "nama": "Kasus 1 - Dugaan gangguan DHCP",
+            "nama": "Kasus 1 - Indikasi masalah DHCP",
             "fakta": {"wifi_terhubung", "tidak_ada_internet", "ip_169"}
         },
         "sinyal": {
-            "nama": "Kasus 2 - Dugaan gangguan kualitas sinyal",
+            "nama": "Kasus 2 - Kualitas sinyal Wi-Fi lemah",
             "fakta": {"rssi_le_minus_80", "internet_lambat"}
         },
         "negatif": {
-            "nama": "Kasus 3 - Kasus negatif (tidak ada kesimpulan)",
+            "nama": "Kasus 3 - Tidak ada aturan yang cocok",
             "fakta": {"wifi_terhubung"}
         },
         "dns": {
-            "nama": "Kasus tambahan - Dugaan masalah DNS",
-            "fakta": {"wifi_terhubung", "tidak_ada_internet", "ip_valid", "akses_ip_berhasil_domain_gagal"}
+            "nama": "Kasus tambahan - Pemeriksaan koneksi ke server DNS",
+            "fakta": {"wifi_terhubung", "tidak_ada_internet", "ip_valid", "server_dns_tidak_merespons"}
         },
         "bandwidth": {
             "nama": "Kasus tambahan - Pemakaian bandwidth",

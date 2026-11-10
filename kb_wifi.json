@@ -1,28 +1,21 @@
 {
   "judul": "Sistem Pakar Identifikasi Gangguan Koneksi Wi-Fi pada Windows",
   "topik": "Identifikasi awal kemungkinan gangguan koneksi Wi-Fi pada perangkat Windows",
-  "batas": "Basis pengetahuan ini disusun dari dokumentasi Microsoft Support, dokumentasi Cisco, dan panduan IT University of Minnesota. Sistem ditujukan untuk pemeriksaan awal koneksi Wi-Fi pada perangkat Windows berdasarkan gejala yang dijawab pengguna. Sistem hanya mencakup indikasi sinyal lemah, masalah pemberian alamat IP melalui DHCP, indikasi masalah DNS, penggunaan bandwidth oleh aplikasi latar belakang, dan interferensi Wi-Fi. Hasil merupakan saran awal berdasarkan fakta yang dimasukkan, bukan diagnosis pasti atau pengganti pemeriksaan administrator jaringan/teknisi.",
+  "batas": "Basis pengetahuan ini dibuat untuk membantu pemeriksaan awal beberapa masalah koneksi Wi-Fi pada perangkat Windows. Aturan disusun dari panduan Microsoft Support dan dokumentasi Cisco. Pemeriksaan dibatasi pada alamat IP/DHCP, server DNS, kualitas sinyal, penggunaan bandwidth oleh aplikasi latar belakang, dan interferensi Wi-Fi. Program tidak membaca kondisi jaringan secara langsung; hasil bergantung pada jawaban pengguna dan skenario yang dimasukkan. Karena itu, hasil hanya berupa indikasi awal dan bukan diagnosis pasti.",
   "sumber": {
     "S1": {
       "judul": "Memperbaiki masalah koneksi Wi-Fi di Windows",
       "penerbit": "Microsoft Support",
       "url": "https://support.microsoft.com/id-id/windows/experience/connectivity-networking/fix-wi-fi-connection-issues-in-windows",
       "tanggal_akses": "10 November 2026",
-      "relevansi": "Menjelaskan koneksi lokal tanpa internet, alamat 169.254.x.x ketika Windows tidak memperoleh alamat IP dari router, DHCP, serta pemeriksaan server DNS."
+      "relevansi": "Panduan ini menjelaskan kondisi perangkat terhubung ke jaringan lokal tetapi tidak dapat mengakses internet, alamat 169.254.x.x ketika Windows tidak memperoleh alamat IP dari router, pemeriksaan DHCP dan server DNS, serta penggunaan bandwidth oleh aplikasi latar belakang."
     },
     "S2": {
       "judul": "Troubleshooting a Traditional Cisco Wireless Network",
       "penerbit": "Cisco",
       "url": "https://www.cisco.com/c/en/us/support/docs/smb/wireless/CB-Wireless-Mesh/1902-tz-Troubleshooting-Traditional-Cisco-Wireless-Network.html",
       "tanggal_akses": "10 November 2026",
-      "relevansi": "Menjelaskan interferensi RF, sumber interferensi, dampaknya terhadap performa dan kestabilan jaringan nirkabel, serta acuan RSSI."
-    },
-    "S3": {
-      "judul": "WiFi: Troubleshoot Your Connection",
-      "penerbit": "University of Minnesota IT",
-      "url": "https://it.umn.edu/services-technologies/self-help-guides/wifi-troubleshoot-your-connection",
-      "tanggal_akses": "10 November 2026",
-      "relevansi": "Menjelaskan aplikasi yang menggunakan bandwidth di latar belakang dapat memperlambat Wi-Fi dan driver yang usang dapat menyebabkan masalah konektivitas."
+      "relevansi": "Dokumentasi ini membahas kondisi lingkungan yang memengaruhi jaringan nirkabel, interferensi, dan tabel RSSI. Cisco mengategorikan -80 dBm sebagai 'Not Good' dan menyebut pengiriman paket dapat menjadi tidak andal."
     }
   },
   "pertanyaan": [
@@ -36,15 +29,15 @@
     },
     {
       "fakta": "ip_169",
-      "teks": "Apakah alamat IPv4 perangkat diawali 169.254 (periksa dengan ipconfig)?"
+      "teks": "Apakah alamat IPv4 yang terlihat pada hasil ipconfig adalah 169.254.x.x?"
     },
     {
       "fakta": "ip_valid",
-      "teks": "Apakah perangkat memiliki alamat IPv4 yang valid dari jaringan (bukan 169.254.x.x atau 0.0.0.0)?"
+      "teks": "Apakah perangkat memperoleh alamat IPv4 dari jaringan, bukan 169.254.x.x atau 0.0.0.0?"
     },
     {
-      "fakta": "akses_ip_berhasil_domain_gagal",
-      "teks": "Apakah akses ke alamat IP tujuan berhasil tetapi akses menggunakan nama domain gagal?"
+      "fakta": "server_dns_tidak_merespons",
+      "teks": "Apakah alamat server DNS tercantum pada ipconfig /all, tetapi server tersebut tidak merespons saat diuji menggunakan ping?"
     },
     {
       "fakta": "rssi_le_minus_80",
@@ -75,24 +68,24 @@
     "kemungkinan_interferensi_wifi"
   ],
   "label": {
-    "wifi_terhubung": "Perangkat terhubung ke Wi-Fi",
-    "tidak_ada_internet": "Tidak ada akses internet",
-    "ip_169": "Alamat IPv4 169.254.x.x terdeteksi",
-    "ip_valid": "Alamat IPv4 valid",
-    "akses_ip_berhasil_domain_gagal": "Akses IP berhasil tetapi nama domain gagal",
-    "rssi_le_minus_80": "RSSI -80 dBm atau lebih lemah",
-    "internet_lambat": "Internet lambat",
-    "aplikasi_bandwidth_aktif": "Aplikasi latar belakang memakai bandwidth besar",
-    "interferensi_teridentifikasi": "Interferensi radio teridentifikasi",
-    "koneksi_tidak_stabil": "Koneksi tidak stabil",
-    "koneksi_lokal_tanpa_internet": "Koneksi lokal tanpa akses internet",
-    "indikasi_gagal_dhcp": "Indikasi kegagalan memperoleh alamat IP melalui DHCP",
-    "indikasi_masalah_dns": "Indikasi masalah resolusi/konfigurasi DNS",
-    "gangguan_sinyal_wifi": "Kemungkinan gangguan kualitas sinyal Wi-Fi",
-    "gangguan_dhcp": "Kemungkinan gangguan pemberian alamat IP (DHCP)",
-    "gangguan_dns": "Kemungkinan gangguan resolusi/konfigurasi DNS",
-    "pemakaian_bandwidth_tinggi": "Kemungkinan bandwidth banyak digunakan aplikasi latar belakang",
-    "kemungkinan_interferensi_wifi": "Kemungkinan interferensi pada jaringan Wi-Fi"
+    "wifi_terhubung": "Perangkat terhubung ke jaringan Wi-Fi",
+    "tidak_ada_internet": "Perangkat tidak dapat mengakses internet",
+    "ip_169": "Alamat IPv4 perangkat adalah 169.254.x.x",
+    "ip_valid": "Perangkat memperoleh alamat IPv4 dari jaringan",
+    "rssi_le_minus_80": "Nilai RSSI -80 dBm atau lebih lemah",
+    "internet_lambat": "Koneksi internet terasa lambat",
+    "aplikasi_bandwidth_aktif": "Ada aplikasi latar belakang yang menggunakan banyak bandwidth",
+    "interferensi_teridentifikasi": "Ada interferensi radio yang teridentifikasi",
+    "koneksi_tidak_stabil": "Koneksi Wi-Fi sering terputus atau tidak stabil",
+    "koneksi_lokal_tanpa_internet": "Wi-Fi terhubung, tetapi internet tidak dapat diakses",
+    "indikasi_gagal_dhcp": "Windows diduga tidak memperoleh alamat IP dari router melalui DHCP",
+    "indikasi_masalah_dns": "Ada indikasi masalah pada server DNS atau koneksi menuju server tersebut",
+    "gangguan_sinyal_wifi": "Kemungkinan kualitas sinyal Wi-Fi kurang baik",
+    "gangguan_dhcp": "Kemungkinan ada masalah pada pemberian alamat IP (DHCP)",
+    "gangguan_dns": "Kemungkinan ada masalah pada koneksi ke server DNS",
+    "pemakaian_bandwidth_tinggi": "Bandwidth banyak digunakan oleh aplikasi latar belakang",
+    "kemungkinan_interferensi_wifi": "Kemungkinan terjadi interferensi pada jaringan Wi-Fi",
+    "server_dns_tidak_merespons": "Server DNS tidak merespons saat diuji dengan ping"
   },
   "aturan": [
     {
@@ -105,7 +98,7 @@
       "maka": "gangguan_sinyal_wifi",
       "jenis": "kesimpulan",
       "sumber": "S2",
-      "penjelasan": "Cisco menjelaskan bahwa sinyal lemah dapat menyebabkan klien mengalami kesulitan koneksi atau kecepatan rendah. Ambang -80 dBm dipakai sebagai indikator lemah dalam model tugas ini, bukan ambang universal untuk semua perangkat."
+      "penjelasan": "Cisco mengategorikan RSSI -80 dBm sebagai 'Not Good' dan menyebut pengiriman paket dapat menjadi tidak andal. Dalam sistem ini, nilai tersebut digabungkan dengan gejala internet lambat sebagai aturan untuk memberi indikasi kualitas sinyal Wi-Fi yang kurang baik."
     },
     {
       "id": "R2",
@@ -128,7 +121,7 @@
       "maka": "indikasi_gagal_dhcp",
       "jenis": "antara",
       "sumber": "S1",
-      "penjelasan": "Microsoft menyatakan alamat 169.254.x.x dapat menunjukkan Windows tidak memperoleh alamat IP dari router ketika menggunakan konfigurasi DHCP otomatis."
+      "penjelasan": "Microsoft menjelaskan bahwa alamat 169.254.x.x dapat muncul ketika Windows tidak berhasil mendapatkan alamat IP dari router. Jika jaringan menggunakan alamat IP otomatis, Microsoft menyarankan untuk memeriksa apakah DHCP pada router aktif."
     },
     {
       "id": "R4",
@@ -146,13 +139,13 @@
       "id": "R5",
       "jika": [
         "ip_valid",
-        "akses_ip_berhasil_domain_gagal"
+        "server_dns_tidak_merespons"
       ],
       "mode": "dan",
       "maka": "indikasi_masalah_dns",
       "jenis": "antara",
       "sumber": "S1",
-      "penjelasan": "Pola ini digunakan sebagai indikasi masalah DNS karena konektivitas berbasis IP tersedia tetapi nama domain gagal diakses. Microsoft menyarankan pemeriksaan server DNS pada kondisi alamat IP valid."
+      "penjelasan": "Microsoft menyarankan memeriksa apakah server DNS tercantum pada konfigurasi IP dan menguji keterjangkauannya menggunakan ping. Jika alamat IP perangkat valid tetapi server DNS tidak dapat dijangkau, hal tersebut menjadi indikasi bahwa koneksi ke server DNS perlu diperiksa."
     },
     {
       "id": "R6",
@@ -164,7 +157,7 @@
       "maka": "gangguan_dns",
       "jenis": "kesimpulan",
       "sumber": "S1",
-      "penjelasan": "Aturan menggabungkan kondisi koneksi tanpa internet dan indikasi masalah DNS untuk menghasilkan dugaan gangguan resolusi/konfigurasi DNS."
+      "penjelasan": "Aturan ini menggabungkan kondisi Wi-Fi terhubung tetapi internet tidak dapat diakses dengan indikasi server DNS tidak dapat dijangkau. Hasilnya merupakan dugaan awal, bukan bukti bahwa server DNS pasti menjadi satu-satunya penyebab."
     },
     {
       "id": "R7",
@@ -175,8 +168,8 @@
       "mode": "dan",
       "maka": "pemakaian_bandwidth_tinggi",
       "jenis": "kesimpulan",
-      "sumber": "S3",
-      "penjelasan": "University of Minnesota IT menjelaskan aplikasi seperti video chat dan file sharing yang berjalan di latar belakang dapat menggunakan bandwidth dan memperlambat Wi-Fi."
+      "sumber": "S1",
+      "penjelasan": "Microsoft menyarankan untuk memeriksa dan menonaktifkan aplikasi latar belakang yang menggunakan bandwidth tinggi ketika koneksi internet lambat. Aturan ini menggunakan kedua kondisi tersebut untuk menghasilkan indikasi pemakaian bandwidth yang tinggi."
     },
     {
       "id": "R8",
@@ -188,7 +181,7 @@
       "maka": "kemungkinan_interferensi_wifi",
       "jenis": "kesimpulan",
       "sumber": "S2",
-      "penjelasan": "Cisco menjelaskan interferensi radio dapat menyebabkan layanan terputus-putus, penundaan transfer, kecepatan rendah, dan ketidakstabilan jaringan."
+      "penjelasan": "Cisco menjelaskan bahwa interferensi dapat menghambat performa jaringan nirkabel dan menyebabkan ketidakstabilan. Aturan ini menggunakan fakta interferensi yang telah diidentifikasi dan koneksi yang tidak stabil sebagai dasar dugaan."
     }
   ]
 }

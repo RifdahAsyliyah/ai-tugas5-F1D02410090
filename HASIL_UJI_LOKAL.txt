@@ -1,0 +1,176 @@
+## dhcp
+
+```text
+
+====================================================================
+Sistem Pakar Identifikasi Gangguan Koneksi Wi-Fi pada Windows
+Pengujian: Kasus 1 - Indikasi masalah DHCP
+====================================================================
+Gejala yang dimasukkan:
+  - Alamat IPv4 perangkat adalah 169.254.x.x
+  - Perangkat tidak dapat mengakses internet
+  - Perangkat terhubung ke jaringan Wi-Fi
+
+Proses penelusuran aturan (Forward Chaining):
+  Langkah 1: R2 menghasilkan Wi-Fi terhubung, tetapi internet tidak dapat diakses
+  Langkah 2: R3 menghasilkan Windows diduga tidak memperoleh alamat IP dari router melalui DHCP
+  Langkah 3: R4 menghasilkan Kemungkinan ada masalah pada pemberian alamat IP (DHCP)
+
+Hasil identifikasi:
+
+KESIMPULAN: Kemungkinan ada masalah pada pemberian alamat IP (DHCP)
+Dasar kesimpulan:
+  - Kemungkinan ada masalah pada pemberian alamat IP (DHCP) <- R4 [S1: Microsoft Support]
+      - Wi-Fi terhubung, tetapi internet tidak dapat diakses <- R2 [S1: Microsoft Support]
+          - Gejala yang dimasukkan: Perangkat terhubung ke jaringan Wi-Fi
+          - Gejala yang dimasukkan: Perangkat tidak dapat mengakses internet
+      - Windows diduga tidak memperoleh alamat IP dari router melalui DHCP <- R3 [S1: Microsoft Support]
+          - Gejala yang dimasukkan: Alamat IPv4 perangkat adalah 169.254.x.x
+
+Batas penggunaan sistem:
+Basis pengetahuan ini dibuat untuk membantu pemeriksaan awal beberapa masalah koneksi Wi-Fi pada perangkat Windows. Aturan disusun dari panduan Microsoft Support dan dokumentasi Cisco. Pemeriksaan dibatasi pada alamat IP/DHCP, server DNS, kualitas sinyal, penggunaan bandwidth oleh aplikasi latar belakang, dan interferensi Wi-Fi. Program tidak membaca kondisi jaringan secara langsung; hasil bergantung pada jawaban pengguna dan skenario yang dimasukkan. Karena itu, hasil hanya berupa indikasi awal dan bukan diagnosis pasti.
+====================================================================
+```
+
+## sinyal
+
+```text
+
+====================================================================
+Sistem Pakar Identifikasi Gangguan Koneksi Wi-Fi pada Windows
+Pengujian: Kasus 2 - Kualitas sinyal Wi-Fi lemah
+====================================================================
+Gejala yang dimasukkan:
+  - Koneksi internet terasa lambat
+  - Nilai RSSI -80 dBm atau lebih lemah
+
+Proses penelusuran aturan (Forward Chaining):
+  Langkah 1: R1 menghasilkan Kemungkinan kualitas sinyal Wi-Fi kurang baik
+
+Hasil identifikasi:
+
+KESIMPULAN: Kemungkinan kualitas sinyal Wi-Fi kurang baik
+Dasar kesimpulan:
+  - Kemungkinan kualitas sinyal Wi-Fi kurang baik <- R1 [S2: Cisco]
+      - Gejala yang dimasukkan: Nilai RSSI -80 dBm atau lebih lemah
+      - Gejala yang dimasukkan: Koneksi internet terasa lambat
+
+Batas penggunaan sistem:
+Basis pengetahuan ini dibuat untuk membantu pemeriksaan awal beberapa masalah koneksi Wi-Fi pada perangkat Windows. Aturan disusun dari panduan Microsoft Support dan dokumentasi Cisco. Pemeriksaan dibatasi pada alamat IP/DHCP, server DNS, kualitas sinyal, penggunaan bandwidth oleh aplikasi latar belakang, dan interferensi Wi-Fi. Program tidak membaca kondisi jaringan secara langsung; hasil bergantung pada jawaban pengguna dan skenario yang dimasukkan. Karena itu, hasil hanya berupa indikasi awal dan bukan diagnosis pasti.
+====================================================================
+```
+
+## negatif
+
+```text
+
+====================================================================
+Sistem Pakar Identifikasi Gangguan Koneksi Wi-Fi pada Windows
+Pengujian: Kasus 3 - Tidak ada aturan yang cocok
+====================================================================
+Gejala yang dimasukkan:
+  - Perangkat terhubung ke jaringan Wi-Fi
+
+Proses penelusuran aturan (Forward Chaining):
+
+Hasil identifikasi:
+  Tidak ditemukan kesimpulan berdasarkan aturan yang tersedia.
+
+Tidak ada aturan yang terpenuhi.
+
+Batas penggunaan sistem:
+Basis pengetahuan ini dibuat untuk membantu pemeriksaan awal beberapa masalah koneksi Wi-Fi pada perangkat Windows. Aturan disusun dari panduan Microsoft Support dan dokumentasi Cisco. Pemeriksaan dibatasi pada alamat IP/DHCP, server DNS, kualitas sinyal, penggunaan bandwidth oleh aplikasi latar belakang, dan interferensi Wi-Fi. Program tidak membaca kondisi jaringan secara langsung; hasil bergantung pada jawaban pengguna dan skenario yang dimasukkan. Karena itu, hasil hanya berupa indikasi awal dan bukan diagnosis pasti.
+====================================================================
+```
+
+## dns
+
+```text
+
+====================================================================
+Sistem Pakar Identifikasi Gangguan Koneksi Wi-Fi pada Windows
+Pengujian: Kasus tambahan - Pemeriksaan koneksi ke server DNS
+====================================================================
+Gejala yang dimasukkan:
+  - Perangkat memperoleh alamat IPv4 dari jaringan
+  - Server DNS tidak merespons saat diuji dengan ping
+  - Perangkat tidak dapat mengakses internet
+  - Perangkat terhubung ke jaringan Wi-Fi
+
+Proses penelusuran aturan (Forward Chaining):
+  Langkah 1: R2 menghasilkan Wi-Fi terhubung, tetapi internet tidak dapat diakses
+  Langkah 2: R5 menghasilkan Ada indikasi masalah pada server DNS atau koneksi menuju server tersebut
+  Langkah 3: R6 menghasilkan Kemungkinan ada masalah pada koneksi ke server DNS
+
+Hasil identifikasi:
+
+KESIMPULAN: Kemungkinan ada masalah pada koneksi ke server DNS
+Dasar kesimpulan:
+  - Kemungkinan ada masalah pada koneksi ke server DNS <- R6 [S1: Microsoft Support]
+      - Wi-Fi terhubung, tetapi internet tidak dapat diakses <- R2 [S1: Microsoft Support]
+          - Gejala yang dimasukkan: Perangkat terhubung ke jaringan Wi-Fi
+          - Gejala yang dimasukkan: Perangkat tidak dapat mengakses internet
+      - Ada indikasi masalah pada server DNS atau koneksi menuju server tersebut <- R5 [S1: Microsoft Support]
+          - Gejala yang dimasukkan: Perangkat memperoleh alamat IPv4 dari jaringan
+          - Gejala yang dimasukkan: Server DNS tidak merespons saat diuji dengan ping
+
+Batas penggunaan sistem:
+Basis pengetahuan ini dibuat untuk membantu pemeriksaan awal beberapa masalah koneksi Wi-Fi pada perangkat Windows. Aturan disusun dari panduan Microsoft Support dan dokumentasi Cisco. Pemeriksaan dibatasi pada alamat IP/DHCP, server DNS, kualitas sinyal, penggunaan bandwidth oleh aplikasi latar belakang, dan interferensi Wi-Fi. Program tidak membaca kondisi jaringan secara langsung; hasil bergantung pada jawaban pengguna dan skenario yang dimasukkan. Karena itu, hasil hanya berupa indikasi awal dan bukan diagnosis pasti.
+====================================================================
+```
+
+## bandwidth
+
+```text
+
+====================================================================
+Sistem Pakar Identifikasi Gangguan Koneksi Wi-Fi pada Windows
+Pengujian: Kasus tambahan - Pemakaian bandwidth
+====================================================================
+Gejala yang dimasukkan:
+  - Ada aplikasi latar belakang yang menggunakan banyak bandwidth
+  - Koneksi internet terasa lambat
+
+Proses penelusuran aturan (Forward Chaining):
+  Langkah 1: R7 menghasilkan Bandwidth banyak digunakan oleh aplikasi latar belakang
+
+Hasil identifikasi:
+
+KESIMPULAN: Bandwidth banyak digunakan oleh aplikasi latar belakang
+Dasar kesimpulan:
+  - Bandwidth banyak digunakan oleh aplikasi latar belakang <- R7 [S1: Microsoft Support]
+      - Gejala yang dimasukkan: Ada aplikasi latar belakang yang menggunakan banyak bandwidth
+      - Gejala yang dimasukkan: Koneksi internet terasa lambat
+
+Batas penggunaan sistem:
+Basis pengetahuan ini dibuat untuk membantu pemeriksaan awal beberapa masalah koneksi Wi-Fi pada perangkat Windows. Aturan disusun dari panduan Microsoft Support dan dokumentasi Cisco. Pemeriksaan dibatasi pada alamat IP/DHCP, server DNS, kualitas sinyal, penggunaan bandwidth oleh aplikasi latar belakang, dan interferensi Wi-Fi. Program tidak membaca kondisi jaringan secara langsung; hasil bergantung pada jawaban pengguna dan skenario yang dimasukkan. Karena itu, hasil hanya berupa indikasi awal dan bukan diagnosis pasti.
+====================================================================
+```
+
+## interferensi
+
+```text
+
+====================================================================
+Sistem Pakar Identifikasi Gangguan Koneksi Wi-Fi pada Windows
+Pengujian: Kasus tambahan - Interferensi Wi-Fi
+====================================================================
+Gejala yang dimasukkan:
+  - Ada interferensi radio yang teridentifikasi
+  - Koneksi Wi-Fi sering terputus atau tidak stabil
+
+Proses penelusuran aturan (Forward Chaining):
+  Langkah 1: R8 menghasilkan Kemungkinan terjadi interferensi pada jaringan Wi-Fi
+
+Hasil identifikasi:
+
+KESIMPULAN: Kemungkinan terjadi interferensi pada jaringan Wi-Fi
+Dasar kesimpulan:
+  - Kemungkinan terjadi interferensi pada jaringan Wi-Fi <- R8 [S2: Cisco]
+      - Gejala yang dimasukkan: Ada interferensi radio yang teridentifikasi
+      - Gejala yang dimasukkan: Koneksi Wi-Fi sering terputus atau tidak stabil
+
+Batas penggunaan sistem:
+Basis pengetahuan ini dibuat untuk membantu pemeriksaan awal beberapa masalah koneksi Wi-Fi pada perangkat Windows. Aturan disusun dari panduan Microsoft Support dan dokumentasi Cisco. Pemeriksaan dibatasi pada alamat IP/DHCP, server DNS, kualitas sinyal, penggunaan bandwidth oleh aplikasi latar belakang, dan interferensi Wi-Fi. Program tidak membaca kondisi jaringan secara langsung; hasil bergantung pada jawaban pengguna dan skenario yang dimasukkan. Karena itu, hasil hanya berupa indikasi awal dan bukan diagnosis pasti.
+====================================================================
+```
